@@ -18,6 +18,14 @@ description: |
 默认最终交付物是 `PNG`。
 `.drawio` 文件是中间可编辑源文件，应始终保留，但除非导出失败，否则它不是主交付物。
 
+默认视觉风格应优先采用“金融风格”：
+
+- 主色：深蓝 / 海军蓝
+- 辅色：金色 / 香槟金
+- 强调色：墨绿或深青色
+- 背景：浅灰蓝或浅米白
+- 避免大面积高饱和紫色、荧光色、儿童风配色
+
 ## 工作流
 
 1. 理解需求：确认图类型、核心元素、关系、语言和输出格式。
@@ -69,7 +77,7 @@ description: |
 
 ```xml
 <mxCell id="node-1" value="Label"
-        style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;"
+        style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf0f6;strokeColor=#1f4e79;fontColor=#0f172a;fontSize=14;"
         vertex="1" parent="1">
   <mxGeometry x="100" y="100" width="160" height="60" as="geometry" />
 </mxCell>
@@ -79,7 +87,7 @@ description: |
 
 ```xml
 <mxCell id="edge-1" value=""
-        style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;"
+        style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
         edge="1" parent="1" source="node-1" target="node-2">
   <mxGeometry relative="1" as="geometry" />
 </mxCell>
@@ -90,6 +98,17 @@ description: |
 - 多行文本必须在 `value` 中使用 `&#xa;` 换行
 - 不要在标签里写字面量 `\n`
 - 所有节点都应保留 `whiteSpace=wrap;html=1;`
+
+### 默认金融配色
+
+除非用户明确指定其他视觉风格，否则优先使用以下配色：
+
+- 普通节点：`fillColor=#eaf0f6; strokeColor=#1f4e79; fontColor=#0f172a`
+- 起止节点：`fillColor=#dbe7f3; strokeColor=#153e75; fontColor=#0f172a`
+- 决策节点：`fillColor=#f4ecd8; strokeColor=#b38b2d; fontColor=#3b2f0b`
+- 容器/分层块：`fillColor=#dce6f1; strokeColor=#335c81; opacity=70`
+- 强调/风险/异常节点：`fillColor=#e6f4ea; strokeColor=#2f6b4f; fontColor=#123524`
+- 连线：`strokeColor=#1f4e79; strokeWidth=2`
 
 ## 第三步：布局规则
 
@@ -102,6 +121,8 @@ description: |
 - 任意两个非容器节点不得重叠
 - 图过宽或过高时，主动增大 `pageWidth` 或 `pageHeight`
 - 优先使用对称、留白均衡的布局
+- 导出前必须检查最外层元素是否都在页面范围内，避免 PNG 被裁切
+- 对流程图和网络图，主方向连线优先从节点边缘中点出入，不允许箭头终点穿进框体内部
 
 ### 各类图的推荐布局
 
@@ -117,6 +138,18 @@ description: |
 
 对于架构图，优先采用 `references/best-practices.md` 中的分层块状风格。
 
+### 连线锚点规则
+
+- 上下关系默认使用：
+  - `exitX=0.5; exitY=1`
+  - `entryX=0.5; entryY=0`
+- 左右关系默认使用：
+  - `exitX=1; exitY=0.5`
+  - `entryX=0; entryY=0.5`
+- 不要省略 `entryX/entryY` 和 `exitX/exitY`
+- 如有折线回路，应使用 `mxPoint` 控制转折点，避免连线贴边穿框
+- 箭头末端必须落在目标节点边界，不得落入节点内部
+
 ## 第四步：自检
 
 不要跳过自检。保存前必须重新检查：
@@ -130,6 +163,9 @@ description: |
 - 多行文本是否使用 `&#xa;`
 - 字号是否可读，通常不低于 `14`
 - 除非图类型明确需要其他样式，否则连线默认使用 `edgeStyle=orthogonalEdgeStyle`
+- 每条边是否明确设置了进入点和离开点，箭头是否停在边框而不是穿入框内
+- 所有节点、容器、边标签和折线拐点是否都落在页面范围内
+- 计算最右侧和最下侧内容边界后，`pageWidth/pageHeight` 是否仍保留至少 `80px` 安全边距
 
 发现问题后，先修正 XML，再保存或导出。
 
@@ -173,8 +209,15 @@ ls /usr/bin/drawio 2>/dev/null || ls /snap/bin/drawio 2>/dev/null
 ### 导出命令
 
 ```bash
-"$DRAWIO" -x -f png --scale 2 --border 20 -o output.png diagram.drawio
+"$DRAWIO" -x -f png --scale 2 --border 30 --crop -o output.png diagram.drawio
 ```
+
+导出时的默认原则：
+
+- 优先使用 `--crop`，减少页面设置不当导致的空白或裁切异常
+- 导出前先确认 `pageWidth/pageHeight` 足够大，不要完全依赖 `--crop`
+- 如果图较复杂、包含回环和侧向分支，优先把页面放大后再导出
+- 如果第一次 PNG 仍有内容缺失，应先增大页面尺寸和边距，再重新导出
 
 推荐命名：
 
