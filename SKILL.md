@@ -87,7 +87,7 @@ description: |
 
 ```xml
 <mxCell id="edge-1" value=""
-        style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=auto;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
+        style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;"
         edge="1" parent="1" source="node-1" target="node-2">
   <mxGeometry relative="1" as="geometry" />
 </mxCell>
@@ -147,8 +147,74 @@ description: |
   - `exitX=1; exitY=0.5`
   - `entryX=0; entryY=0.5`
 - 不要省略 `entryX/entryY` 和 `exitX/exitY`
+- 不要依赖 draw.io 自动吸附去决定终点位置，必须显式写锚点
+- 连线默认增加：`entryPerimeter=1; exitPerimeter=1; perimeterSpacing=0`
 - 如有折线回路，应使用 `mxPoint` 控制转折点，避免连线贴边穿框
 - 箭头末端必须落在目标节点边界，不得落入节点内部
+
+### 流程图强模板规则
+
+流程图不只是“尽量”规整，而是必须按以下强模板执行：
+
+- 主链路必须垂直向下
+- 条件分支优先向右展开，回归主链后再向下
+- 回退路径不得直接斜插回主节点，必须使用折线和中间转折点
+- 任意两个有连线关系的节点，如果中心线之间存在其他节点，应强制增加 `mxPoint`
+- 决策节点下方只保留一个主出口；侧向出口必须从菱形左右边缘发出
+- 如果边会贴着节点边缘走，先拉开节点间距，不要靠缩短线段解决
+- 对流程图，优先使用以下三种固定模板，而不是临时拼接：
+  - 上下直连模板
+  - 右侧分支模板
+  - 右侧回环模板
+
+上下直连模板：
+
+```xml
+style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+```
+
+右侧分支模板：
+
+```xml
+style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;"
+```
+
+右侧回环模板：
+
+```xml
+style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=0;entryX=1;entryY=0.5;"
+```
+
+并且必须配合：
+
+```xml
+<Array as="points">
+  <mxPoint x="..." y="..." />
+  <mxPoint x="..." y="..." />
+</Array>
+```
+
+### 架构图强模板规则
+
+架构图必须采用“标题与容器分离”模式，禁止把容器标题直接写进容器本体中。
+
+强制要求：
+
+- 所有大容器默认 `value=""`
+- 层标题必须使用单独的标题 cell
+- 子分组标题必须使用单独的标题 cell，或使用顶部标题条，不要直接让容器居中显示文字
+- 叶子节点才承载业务文字
+- 不允许容器在视觉中心出现孤立文字
+- 架构图默认优先无箭头；只有在确实需要表达调用关系时才画线
+- 如果图是“分层架构图”，标题左对齐或居中置顶，不允许垂直居中浮在容器中部
+
+推荐结构：
+
+- 背景层
+- 左侧层标签
+- 右侧层容器
+- 容器内部标题条
+- 标题条下方叶子模块
 
 ## 第四步：自检
 
@@ -166,6 +232,9 @@ description: |
 - 每条边是否明确设置了进入点和离开点，箭头是否停在边框而不是穿入框内
 - 所有节点、容器、边标签和折线拐点是否都落在页面范围内
 - 计算最右侧和最下侧内容边界后，`pageWidth/pageHeight` 是否仍保留至少 `80px` 安全边距
+- 流程图中的分支线和回路线是否使用了固定模板，而不是任意自动路由
+- 架构图容器是否全部 `value=""`，标题是否已拆到独立标题 cell
+- 架构图中是否存在容器中心漂浮文字；如果存在，必须重构为标题条模式
 
 发现问题后，先修正 XML，再保存或导出。
 

@@ -61,6 +61,61 @@
 - 回路、支线、跨层连接应增加折线控制点，不要让线段直接贴着节点边缘乱拐
 - 箭头终点必须停在目标框体边界，不要进入目标框内部
 - 如果节点较密，先拉开节点间距，再调锚点和折线
+- 默认增加：`entryPerimeter=1; exitPerimeter=1; perimeterSpacing=0`
+
+### 流程图固定连线模板
+
+为减少箭头穿框问题，流程图优先只使用下列固定模板。
+
+#### 1. 上下直连
+
+```xml
+<mxCell id="edge-main" value=""
+        style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;
+               strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;
+               entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;
+               exitX=0.5;exitY=1;entryX=0.5;entryY=0;"
+        edge="1" parent="1" source="step-a" target="step-b">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+```
+
+#### 2. 右侧分支
+
+```xml
+<mxCell id="edge-branch" value="否"
+        style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;
+               strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;
+               entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;
+               exitX=1;exitY=0.5;entryX=0;entryY=0.5;"
+        edge="1" parent="1" source="decision-a" target="branch-a">
+  <mxGeometry relative="1" as="geometry" />
+</mxCell>
+```
+
+#### 3. 右侧回环
+
+```xml
+<mxCell id="edge-loop" value=""
+        style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;
+               strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;
+               entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;
+               exitX=0.5;exitY=0;entryX=1;entryY=0.5;"
+        edge="1" parent="1" source="rework-a" target="step-a">
+  <mxGeometry relative="1" as="geometry">
+    <Array as="points">
+      <mxPoint x="860" y="420" />
+      <mxPoint x="620" y="420" />
+    </Array>
+  </mxGeometry>
+</mxCell>
+```
+
+规则：
+
+- 回路线必须带 `mxPoint`
+- 不允许省略锚点后让 draw.io 自动寻找终点
+- 如果箭头仍有穿框风险，优先加大节点间距和折线路径
 
 ### 常见错误
 
@@ -90,6 +145,44 @@
 6. 横跨多层的能力，例如安全、监控，可放在最右侧边栏
 7. 如果空间分组已经足够表达结构，优先不画箭头
 8. 整体布局应紧凑、对称、留白均衡
+
+### 标题与容器分离原则
+
+这是当前架构图最重要的硬规则之一：
+
+- 容器本体默认 `value=""`
+- 容器只负责承载背景和边框，不负责显示标题文字
+- 标题必须单独拆成标题 cell
+- 不允许出现“容器中间漂浮一行字”的情况
+
+错误做法：
+
+```xml
+<mxCell id="app-container" value="应用层"
+        style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dce6f1;strokeColor=#335c81;opacity=70;"
+        vertex="1" parent="1">
+  <mxGeometry x="180" y="60" width="790" height="110" as="geometry" />
+</mxCell>
+```
+
+正确做法：
+
+```xml
+<mxCell id="app-container" value=""
+        style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dce6f1;strokeColor=#335c81;opacity=70;"
+        vertex="1" parent="1">
+  <mxGeometry x="180" y="60" width="790" height="140" as="geometry" />
+</mxCell>
+
+<mxCell id="app-title" value="应用层"
+        style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c8d8ea;strokeColor=none;
+               fontSize=16;fontStyle=1;fontColor=#0f172a;align=left;verticalAlign=middle;spacingLeft=12;"
+        vertex="1" parent="1">
+  <mxGeometry x="190" y="70" width="770" height="30" as="geometry" />
+</mxCell>
+```
+
+然后把业务模块放在标题条下方，不要和标题混在同一视觉层里。
 
 ### 布局常量
 
@@ -138,13 +231,24 @@ ITEM_H = 35
 </mxCell>
 ```
 
+### 容器标题条示例
+
+```xml
+<mxCell id="app-title" value="应用层"
+        style="rounded=0;whiteSpace=wrap;html=1;fillColor=#c8d8ea;strokeColor=none;
+               fontSize=16;fontStyle=1;fontColor=#0f172a;align=left;verticalAlign=middle;spacingLeft=12;"
+        vertex="1" parent="1">
+  <mxGeometry x="190" y="70" width="770" height="30" as="geometry" />
+</mxCell>
+```
+
 ### 叶子节点示例
 
 ```xml
 <mxCell id="service-api" value="API服务"
         style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8fafc;strokeColor=#1f4e79;fontColor=#0f172a;fontSize=14;"
         vertex="1" parent="1">
-  <mxGeometry x="200" y="85" width="140" height="60" as="geometry" />
+  <mxGeometry x="200" y="110" width="140" height="60" as="geometry" />
 </mxCell>
 ```
 

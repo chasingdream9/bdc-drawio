@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxfile host="app.diagrams.net" agent="bdc-drawio-skill" version="21.0.0" type="device">
+  <diagram name="bdc-drawio-validation-flow" id="diagram-1">
+    <mxGraphModel dx="1422" dy="762" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1300" pageHeight="1900" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="start" value="开始&#xa;融资需求形成" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbe7f3;strokeColor=#153e75;fontColor=#0f172a;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="470" y="60" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="step-1" value="发行立项与内部审批" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf0f6;strokeColor=#1f4e79;fontColor=#0f172a;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="470" y="220" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="step-2" value="选择主承销商与中介机构&#xa;确定发行方案" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf0f6;strokeColor=#1f4e79;fontColor=#0f172a;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="470" y="380" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="step-3" value="尽调与申报材料准备" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf0f6;strokeColor=#1f4e79;fontColor=#0f172a;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="470" y="540" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="decision-1" value="监管注册/审核&#xa;是否通过" style="rhombus;whiteSpace=wrap;html=1;fillColor=#f4ecd8;strokeColor=#b38b2d;fontColor=#3b2f0b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="480" y="700" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="step-4" value="路演推介与簿记建档" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf0f6;strokeColor=#1f4e79;fontColor=#0f172a;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="470" y="920" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="decision-2" value="发行定价与配售结果&#xa;是否确认" style="rhombus;whiteSpace=wrap;html=1;fillColor=#f4ecd8;strokeColor=#b38b2d;fontColor=#3b2f0b;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="480" y="1080" width="200" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="step-5" value="投资者缴款&#xa;完成债券发行" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf0f6;strokeColor=#1f4e79;fontColor=#0f172a;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="470" y="1300" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="step-6" value="登记托管与上市挂牌" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#eaf0f6;strokeColor=#1f4e79;fontColor=#0f172a;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="470" y="1460" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="end" value="结束&#xa;进入存续期管理" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dbe7f3;strokeColor=#153e75;fontColor=#0f172a;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="470" y="1620" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rework-1" value="补充反馈、修订材料&#xa;重新提交" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#2f6b4f;fontColor=#123524;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="860" y="720" width="220" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="rework-2" value="调整票面利率、规模&#xa;或配售方案" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e6f4ea;strokeColor=#2f6b4f;fontColor=#123524;fontSize=14;" vertex="1" parent="1">
+          <mxGeometry x="860" y="1100" width="220" height="60" as="geometry" />
+        </mxCell>
+
+        <mxCell id="e-start-1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="start" target="step-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-1-2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="step-1" target="step-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-2-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="step-2" target="step-3">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-3-d1" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="step-3" target="decision-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-d1-4" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=14;" edge="1" parent="1" source="decision-1" target="step-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-d1-r1" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontSize=14;" edge="1" parent="1" source="decision-1" target="rework-1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r1-3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=0;entryX=1;entryY=0.5;" edge="1" parent="1" source="rework-1" target="step-3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="970" y="650" />
+              <mxPoint x="690" y="650" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-4-d2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="step-4" target="decision-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-d2-5" value="是" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;fontSize=14;" edge="1" parent="1" source="decision-2" target="step-5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-d2-r2" value="否" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=1;exitY=0.5;entryX=0;entryY=0.5;fontSize=14;" edge="1" parent="1" source="decision-2" target="rework-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-r2-4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=0;entryX=1;entryY=0.5;" edge="1" parent="1" source="rework-2" target="step-4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="970" y="1000" />
+              <mxPoint x="690" y="1000" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="e-5-6" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="step-5" target="step-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="e-6-end" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;orthogonalLoop=1;jettySize=20;html=1;strokeColor=#1f4e79;strokeWidth=2;endArrow=classic;endFill=1;entryPerimeter=1;exitPerimeter=1;perimeterSpacing=0;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="step-6" target="end">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
